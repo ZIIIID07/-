@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Илья Закопко | интерактивное портфолио</title>
+    <!-- Подключаем отдельный CSS файл для чистоты структуры -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Небольшие дополнительные стили для интерактивных элементов, чтобы сохранить визуал */
+        .js-counter {
+            font-size: 0.9rem;
+            background: #e9f0f5;
+            display: inline-block;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            margin-top: 0.7rem;
+            color: #1f5679;
+            font-weight: 500;
+        }
+        .btn.disabled-btn, .btn:disabled {
+            background-color: #95adbc;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.7;
+        }
+        .project-card {
+            transition: all 0.2s ease;
+        }
+        .fade-in {
+            animation: fadeSlideUp 0.5s ease forwards;
+        }
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .demo-message {
+            background: #d9eaf3;
+            border-left: 4px solid #1f5679;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+        }
+        .interactive-badge {
+            background: #2c6280;
+            color: white;
+            border-radius: 40px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        button.skill-btn {
+            background: none;
+            border: none;
+            font-size: inherit;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .click-hint {
+            font-size: 0.75rem;
+            color: #5a6f7e;
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Верхний блок с именем + интерактивный счётчик -->
+    <div class="hero-card" id="heroCard">
+        <h1>Илья Закопко <span id="liveIndicator" class="interactive-badge">🌱 active</span></h1>
+        <div class="hero-tagline">18 лет · студент IT-академии · начинаю свой путь в цифровых технологиях</div>
+        <p>Привет! Меня зовут Илья, я делаю первые шаги в IT. Сейчас учусь на втором курсе, параллельно прохожу 
+        обучение в IT-академии. Пока что не могу похвастаться крутыми проектами, но мне очень интересно разбираться 
+        в том, как работают сайты и приложения. Это моё портфолио-визитка для университета и академии.</p>
+        <a href="#" id="demoProjectsBtn" class="btn">📁 Посмотреть мои учебные работы →</a>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem;"><em>*ссылка ведёт на демо-страницу с заданиями из академии</em></p>
+        <!-- Динамический блок времени на сайте -->
+        <div id="sessionCounter" class="js-counter">⏱️ На сайте: 0 сек.</div>
+        <div class="click-hint">✨ (кликни на любую кнопку "навыков" ниже)</div>
+    </div>
+
+    <!-- РАЗДЕЛ: Обо мне + анимированное приветствие по клику -->
+    <section id="aboutSection">
+        <h2>Обо мне <button id="greetingBtn" style="background: none; border: none; font-size: 0.9rem; margin-left: 12px; cursor: pointer; color: #2c6e9e;">👋 Поздороваться</button></h2>
+        <div id="greetingMessage"></div>
+        <p>Мне 18 лет. В IT я не супер-специалист, но активно учусь. До этого в универе выполнял базовые лабы по информатике, компьютерной графике, ООП, и т.д.,
+        сейчас начал углубляться в веб-разработку в IT-академии. Понимаю, что для хорошего старта нужна практика, поэтому 
+        стараюсь разобраться в каждом новом задании.</p>
+        <p>Цель — освоить хотя бы основы вёрстки, чтобы к концу обучения в академии уверенно создавать простые, 
+        но аккуратные сайты. Пока мой опыт небольшой, но я ответственно подхожу к учёбе и не боюсь гуглить сложные моменты :)</p>
+        <ul>
+            <li><strong>Где учусь:</strong> Университет (ТУСУР) + IT-академия (курс- Цифровизация и нейросеть)</li>
+            <li><strong>Что уже пробовал:</strong> HTML, CSS, немного базы Git, работа с макетами в Figma (на уровне просмотра)</li>
+            <li><strong>Чем горжусь:</strong> сдал все университетские задания по вебу, сейчас пишу первую небольшую страницу-портфолио</li>
+        </ul>
+    </section>
+
+    <!-- ВИЗУАЛЬНЫЙ БЛОК: что изучаю / интерактивные скиллы -->
+    <div class="visual-block" id="skillsBlock">
+        <h3>📚 Чем занимаюсь сейчас в IT-академии 
+            <span style="font-size: 0.7rem; background: #d4e3ed; padding: 0.1rem 0.6rem; border-radius: 50px;">🔥 кликабельные теги</span>
+        </h3>
+        <p>Наша программа включает основы изучения нейросети. Я пока на старте, но постепенно осваиваю инструменты, которые помогут 
+        сверстать аккуратный сайт. Вот список тем, которые мы уже прошли или проходим:</p>
+        <div class="skills-grid" id="skillsGrid">
+            <!-- Каждый skill-tag теперь кликабелен (но сохраняем стиль) -->
+            <button class="skill-tag skill-btn" data-skill="Создания сайтов">📄 Создания сайтов</button>
+            <button class="skill-tag skill-btn" data-skill="CRM- системы">⚙️ CRM- системы</button>
+            <button class="skill-tag skill-btn" data-skill="Искусственный интеллект">🧠 Искусственный интеллект</button>
+            <button class="skill-tag skill-btn" data-skill="Облачные решения">☁️ Облачные решения</button>
+            <button class="skill-tag skill-btn" data-skill="Финансовые технологии">💰 Финансовые технологии</button>
+            <button class="skill-tag skill-btn" data-skill="Таблицы и формы">📊 Таблицы и формы</button>
+        </div>
+        <div id="skillFeedback" style="margin-top: 0.7rem; font-size: 0.85rem; font-style: italic; color: #1a3a4f;"></div>
+        <p style="margin-top: 1rem;">⭐ Планирую углубляться дальше: изучать Flexbox и адаптив, чтобы сайты хорошо выглядели на телефонах.</p>
+    </div>
+
+    <!-- РАЗДЕЛ ПРОЕКТ / ЗАДАНИЕ + динамическая карточка -->
+    <section id="projectsSection">
+        <h2>Мои первые работы</h2>
+        <p>Пока что моё портфолио состоит из учебных заданий. Например, в академии мы делали страницу-визитку, 
+        небольшой макет блога. Сейчас это выглядит просто, но я вижу прогресс: первая страница была совсем базовая, 
+        а эта — уже с оформлением, отступами и визуальными блоками. Буду добавлять новые работы по мере учёбы.</p>
+        <div id="dynamicProjectContainer">
+            <!-- Здесь будет динамически добавлен блок с демо-проектом -->
+        </div>
+        <p>👉 Посмотреть архив моих заданий можно в <a href="https://github.com/ZIIIID07/my-portfolio-it-7.6/projects?query=is%3Aopen" target="_blank" id="repoDemoLink">учебном репозитории</a> или скачать пример <a href="#" id="downloadDemoLink">первой вёрстки</a>.</p>
+        <a href="#" id="otherProjectsLink" style="display: inline-block; margin-top: 0.2rem;">📖 Другие проекты из академии →</a>
+        <!-- Блок для уведомлений -->
+        <div id="notificationDemo" class="demo-message" style="display: none;"></div>
+    </section>
+
+    <!-- КОНТАКТЫ (реальные ссылки) -->
+    <section id="contactsSection">
+        <h2>Контакты</h2>
+        <p>Буду рад обратной связи или советам от более опытных разработчиков. Если у вас есть предложения, 
+        вопросы по учёбе или просто хотите обменяться опытом — пишите! Я всегда открыт к общению.</p>
+        <ul>
+            <li>📧 Электронная почта: <a href="mailto:zakopkoilyazid@gmail.com">zakopkoilyazid@gmail.com</a></li>
+            <li>💬 Telegram: <a href="https://t.me/ZIIIIIIIIIIIIIID" target="_blank">@ZIIIIIIIIIIIIIID</a></li>
+            <li>🌐 Учебный профиль (GitHub): <a href="https://github.com/ZIIIID07/my-portfolio-it-7.6" target="_blank" id="githubDemoLink">github.com/ZIIIID07/my-portfolio-it-7.6</a></li>
+        </ul>
+        <!-- Кнопка "Показать/скрыть доп.совет" - интерактив -->
+        <button id="toggleAdviceBtn" style="background: #e4edf3; border: none; padding: 0.4rem 1rem; border-radius: 40px; cursor: pointer; margin-top: 0.5rem; font-size: 0.8rem;">💡 Полезный совет</button>
+        <div id="adviceMessage" style="margin-top: 0.6rem; font-size: 0.85rem; color: #2c6280; display: none;">✨ Совет: всегда комментируй код и делай адаптив через медиазапросы! 🚀</div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <p>© 2026 Илья Закопко — студент, начинающий специалист. Это моё портфолио для сдачи задания по HTML/CSS/JS.</p>
+        <p style="margin-top: 6px;"><a href="#" id="goUpLink">🔼 Наверх</a> · <a href="#" id="studyMaterialsLink">Страница с учебными материалами</a></p>
+    </footer>
+</div>
+
+<!-- Подключаем отдельный JavaScript -->
+<script src="script.js"></script>
+
+<script>
+    // Дополнительная инициализация для гарантии работы
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('✅ Портфолио Ильи Закопко загружено!');
+        
+        // Обновляем реальные ссылки на GitHub, чтобы они точно работали
+        const githubRepoLink = document.getElementById('githubDemoLink');
+        if (githubRepoLink) {
+            githubRepoLink.href = 'https://github.com/ZIIIID07/my-portfolio-it-7.6';
+            githubRepoLink.target = '_blank';
+        }
+        
+        const repoProjectsLink = document.getElementById('repoDemoLink');
+        if (repoProjectsLink) {
+            repoProjectsLink.href = 'https://github.com/ZIIIID07/my-portfolio-it-7.6/projects?query=is%3Aopen';
+            repoProjectsLink.target = '_blank';
+        }
+    });
+</script>
+</body>
+</html>
